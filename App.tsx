@@ -1,18 +1,6 @@
-import {
-  createNativeStackNavigator,
-  NativeStackScreenProps,
-} from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StatusBar } from "react-native";
 import NoteEditingScreen from "./screens/NoteEditingScreen";
 import NotesScreen from "./screens/NotesScreen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -55,17 +43,3 @@ export default function App() {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#000000",
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
-  orangeText: {
-    color: "#FF8811",
-    fontSize: 18,
-    paddingRight: "5%",
-  },
-});

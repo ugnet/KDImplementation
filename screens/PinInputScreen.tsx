@@ -65,10 +65,8 @@ export default function PinInputScreen({ route, navigation }: Props) {
     pass[currentIndex] = key;
     setPasscode(pass);
     setError(false);
-    console.log("input");
     if (currentIndex + 1 === PIN_LENGTH) {
       if (phase === "creatingPin") {
-        console.log("bb");
         // save pin
         dispatch(addPin(passcode.join("") + key));
         // navigate to training
@@ -151,17 +149,14 @@ export default function PinInputScreen({ route, navigation }: Props) {
   useEffect(() => {
     if (currentIndex === PIN_LENGTH) {
       if (phase === "training") {
-        //TRAINING
         if (!validatePasscode(passcode.join(""))) {
           setError(true);
         } else {
-          // Save training step input data
           dispatch(
             addTrainingStepData({
               data: inputData,
             })
           );
-          console.log("inputData<<<<<", inputData);
           if (trainingStep === TRAINING_STEPS) {
             navigation.pop(2);
           }
@@ -178,7 +173,6 @@ export default function PinInputScreen({ route, navigation }: Props) {
             ? authenticate1(lockData.trainingData, inputData, THRESHOLD)
             : false;
 
-          //   NAVIGATE
           if (isLegitimate) {
             if (phase === "unlockNote") {
               dispatch(editNote({ ...note, locked: false } as Note));

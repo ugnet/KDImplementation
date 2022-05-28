@@ -61,7 +61,6 @@ export default function NoteEditingScreen({ route, navigation }: Props) {
 
   const handleLockPress = () => {
     if (locked) {
-      // UNLOCK
       navigation.navigate("PinInput", { note: note, purpose: "unlockNote" });
       return;
     }

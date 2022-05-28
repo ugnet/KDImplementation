@@ -42,7 +42,11 @@ export default function NotesScreen({ route, navigation }: Props) {
           <Text style={styles.text}>No notes added</Text>
         ) : (
           notes.map((note) => (
-            <TouchableOpacity style={styles.note} onPress={editNote(note)}>
+            <TouchableOpacity
+              key={note.id}
+              style={styles.note}
+              onPress={editNote(note)}
+            >
               <View style={{ justifyContent: "space-evenly" }}>
                 <Text style={styles.text}>{note.title}</Text>
                 <Text style={styles.date}>

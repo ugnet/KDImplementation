@@ -1,9 +1,10 @@
-// 1. "Two novel biometric features in keystroke dynamics authentication systems for touch screen devices" [72]
+// Statistical classifier from:
+// Cheng-Jung Tasia, Ting-Yi Chang, Pei-Cheng Cheng and Jyun-Hao Lin
+// "Two novel biometric features in keystroke dynamics authentication systems for touch screen devices"
 
 import { InputData } from "../state/lock_slice";
 import { extractFeatures, extractFeaturesTesting } from "./featureExtractors";
 
-// for building classifier
 const getMeans = (extractedFeatures: Array<Array<number>>) => {
   const meansArray: Array<number> = [];
 
@@ -12,7 +13,6 @@ const getMeans = (extractedFeatures: Array<Array<number>>) => {
     for (let j = 0; j < extractedFeatures.length; j++) {
       sameFeatureDiferentSteps.push(extractedFeatures[j][i]);
     }
-    // calculate mean
     const sum = sameFeatureDiferentSteps.reduce((a, b) => a + b, 0);
     const mean = sum / extractedFeatures.length;
     meansArray.push(mean);
@@ -31,7 +31,6 @@ const getMeanAbsoluteDeviations = (
     for (let j = 0; j < extractedFeatures.length; j++) {
       sameFeatureDiferentSteps.push(extractedFeatures[j][i]);
     }
-    // calculate deviation
     const sum = sameFeatureDiferentSteps.reduce(
       (a, b) => a + Math.abs(b - means[i]),
       0
@@ -64,7 +63,7 @@ export const authenticate1 = (
   inputData: InputData,
   threshold: number
 ) => {
-  const features = extractFeatures(trainingData); //array.length ik-2
+  const features = extractFeatures(trainingData);
   const means = getMeans(features);
   const meanAbsoluteDeviations = getMeanAbsoluteDeviations(means, features);
 
